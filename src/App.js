@@ -38,7 +38,7 @@ trendData(trending1,trending2)
    const {trending2} = trend2;
   const data = result.length == 0 || result.length==1 ? [[1,1,1]]: result;
   const options = {
-    title: "Trend Comparision",
+    title: "Trend Comparison",
     curveType: "function",
     legend: { position: "bottom" }
   };
@@ -61,7 +61,7 @@ trendData(trending1,trending2)
      <div style={{"textAlign":"center", "margin":"20px"}}>
 {sending ? <img src = {loading} /> : 
 
-result.length ==1  && result[0] && result[0].length ? <h1>No comparisions found</h1>:
+result.length ==1  && result[0] && result[0].length ? <h1>No comparisons found</h1>:
 <Chart
 chartType="LineChart"
 width="100%"
