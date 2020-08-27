@@ -36,7 +36,7 @@ trendData(trending1,trending2)
     trending2:''
    })
    const {trending2} = trend2;
-  const data = result.length == 0 || result.length==1 ? [[123,123,123]]: result;
+  const data = result.length == 0 || result.length==1 ? [[1,1,1]]: result;
   const options = {
     title: "Trend Comparision",
     curveType: "function",
