@@ -4,6 +4,9 @@ import { connect} from "react-redux";
 import {trendData} from './actions/data' 
 import {PropTypes} from 'prop-types'
 import loading from './loading.gif'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 const App = ({trendData,sending, result}) => {
   const handleTrend1 = async(e) => {
     //console.log(trending1)
@@ -42,6 +45,15 @@ trendData(trending1,trending2)
     curveType: "function",
     legend: { position: "bottom" }
   };
+
+  const options2 = [
+    'Line Chart', 'Scatter Chart'
+  ];
+  const defaultOption = options2[0];
+  const[option,setOption] = useState({
+    chart:'Line Chart'
+  })
+const {chart} = option;
   return (
     <Fragment>
     <div className="container">
@@ -56,19 +68,38 @@ trendData(trending1,trending2)
      <textarea style={{"margin":"10px","width":"30%"}} placeholder = "Trend 2 keywords" onChange={handleTrend2}></textarea>
      </div>
      <div style={{"textAlign":"center"}}>
-     <button type="button" className="btn btn-success" onClick={handleClick}>Compare the two trends</button>
+     <button style={{margin:'10px'}} type="button" className="btn btn-success" onClick={handleClick}>Compare the two trends</button>
      </div>
+     
+     <div style={{"textAlign":"center"}}>
+      <Dropdown  className = "btn btn-light" style={{width:'fit-content !important'}} onChange = {(e)=>{setOption({
+        ...option,
+        chart:e.value
+      })}} options={options2}  value={defaultOption} placeholder="Select chart"></Dropdown>
+    
+      </div>
      <div style={{"textAlign":"center", "margin":"20px"}}>
 {sending ? <img src = {loading} /> : 
 
 result.length ==1  && result[0] && result[0].length ? <h1>No comparisons found</h1>:
-<Chart
+<div>
+{chart=='Line Chart' ? <Chart
 chartType="LineChart"
 width="100%"
 height="400px"
 data={data}
 options={options}
+/>: <Chart
+chartType="ScatterChart"
+width="100%"
+height="400px"
+data={data}
+options={options}
+legendToggle
 />}
+
+
+      </div>}
 </div>
      
      </div>
