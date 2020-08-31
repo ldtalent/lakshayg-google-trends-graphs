@@ -1,8 +1,7 @@
 const initialState = {
     result:[[]],
     sending:false,
-    key1:"",
-    key2:"",
+    keyArr:[],
     dailyTrending:false
   };
 
@@ -37,8 +36,7 @@ const initialState = {
                 return {
                     ...state,
                     dailyTrending:false,
-                   key1:payload.key1,
-                   key2:payload.key2
+                   keyArr:payload
                 }
     
             case 'TRENDING_ERROR':

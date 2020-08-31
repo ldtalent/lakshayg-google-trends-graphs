@@ -54,10 +54,10 @@ const country = RNLocalize.getCountry();
 
    const result = await axios.get(`${domain}/${country}`)
   // const result2 = await axios.get(`${domain}/${trend2}`)
-     //console.log(result.data.trend1)
+   // console.log(JSON.parse(result.data).default.trendingSearchesDays[0].trendingSearches)
       dispatch({
         type: 'TRENDING_RECEIVED',
-       payload:{key1:result.data.trend1,key2:result.data.trend2}
+       payload:result.data
       });
     } catch (error) {
    

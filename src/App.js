@@ -8,7 +8,7 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 
-const App = ({trendData,sending,dailyTrending, result, getTrending,key1,key2}) => {
+const App = ({trendData,sending,dailyTrending, result, getTrending,keyArr}) => {
   
   useEffect(()=>{
    // console.log('Hello')
@@ -72,10 +72,18 @@ const {chart} = option;
     <div className="jumbotron jumbotron-fluid">
   <div className="container">
     <h1 className="display-4" style={{"textAlign":"center"}}>Compare Google search trends</h1>
-   <p style={{"textAlign":"center"}}>The most trending searches of your region are {dailyTrending ? <img style={{width:"10px",height:"10px"}} src = {loading} />:<b>{key1}</b>} and {dailyTrending ? <img style={{width:"10px",height:"10px"}} src = {loading} />:<b>{key2}</b>} </p>
+ 
   </div>
 </div>
-    <div style={{"textAlign":"center"}}>
+<div className ="row">
+<div className="col-md-2 col-sm-12" style={{textAlign:'center'}}>
+{dailyTrending? null: <div><h6>Trending Searches</h6><i class="fa fa-arrow-down" aria-hidden="true"></i>{keyArr.map((x)=> 
+  <div> {x}</div>
+)}</div>}
+</div>
+<div className="col-md-10 col-sm-12">
+    <div  style={{"textAlign":"center"}}>
+    
      <textarea style={{"margin":"10px","width":"30%"}} placeholder = "Trend 1 keywords" onChange={handleTrend1}></textarea>
      <textarea style={{"margin":"10px","width":"30%"}} placeholder = "Trend 2 keywords" onChange={handleTrend2}></textarea>
      </div>
@@ -90,7 +98,7 @@ const {chart} = option;
       })}} options={options2}  value={defaultOption} placeholder="Select chart"></Dropdown>
     
       </div>
-     <div style={{"textAlign":"center", "margin":"20px"}}>
+      <div style={{"textAlign":"center", "margin":"20px"}}>
 {sending ? <img src = {loading} /> : 
 
 result.length ==1  && result[0] && result[0].length ? <h1>No comparisons found</h1>:
@@ -105,7 +113,7 @@ options={options}
 />: <Chart
 chartType="ScatterChart"
 width="100%"
-height="400px"
+height="100%"
 data={data}
 options={options}
 legendToggle
@@ -114,6 +122,10 @@ legendToggle
 
       </div>}
 </div>
+     
+     </div>
+     </div>
+     
      
      </div>
 </Fragment>
@@ -126,16 +138,14 @@ sending:PropTypes.bool.isRequired,
 dailyTrending:PropTypes.bool.isRequired,
 result:PropTypes.array.isRequired,
 getTrending:PropTypes.func.isRequired,
-key1:PropTypes.string.isRequired,
-key2:PropTypes.string.isRequired
+keyArr:PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state) => ({
  sending:state.trend.sending,
  dailyTrending:state.trend.dailyTrending,
  result:state.trend.result,
- key1:state.trend.key1,
- key2:state.trend.key2
+keyArr:state.trend.keyArr
  });
 export default connect(mapStateToProps, {
  trendData, getTrending
