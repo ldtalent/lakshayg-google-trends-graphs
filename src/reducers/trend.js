@@ -1,7 +1,9 @@
 const initialState = {
     result:[[]],
     sending:false,
-    
+    key1:"",
+    key2:"",
+    dailyTrending:false
   };
 
   export default function (state = initialState, action) {
@@ -24,7 +26,26 @@ const initialState = {
             return {
                 ...state,
                 sending:false
-            }    
+            }
+            
+            case 'TRENDING':
+                return{
+                    ...state,
+                    dailyTrending: true
+                }
+            case 'TRENDING_RECEIVED':
+                return {
+                    ...state,
+                    dailyTrending:false,
+                   key1:payload.key1,
+                   key2:payload.key2
+                }
+    
+            case 'TRENDING_ERROR':
+                return {
+                    ...state,
+                    dailyTrending:false
+                }    
         default:   
         return state 
     }

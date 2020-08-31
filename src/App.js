@@ -1,13 +1,25 @@
 import React, { useEffect, useState, Fragment } from "react";
 import Chart from 'react-google-charts'
 import { connect} from "react-redux";
-import {trendData} from './actions/data' 
+import {trendData, getTrending} from './actions/data' 
 import {PropTypes} from 'prop-types'
 import loading from './loading.gif'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const App = ({trendData,sending, result}) => {
+
+const App = ({trendData,sending,dailyTrending, result, getTrending,key1,key2}) => {
+  
+  useEffect(()=>{
+   // console.log('Hello')
+   async function getTrend(){
+    await getTrending();
+   }
+    getTrend()
+
+   
+   },[getTrending])
+   
   const handleTrend1 = async(e) => {
     //console.log(trending1)
     settrend1({
@@ -60,7 +72,7 @@ const {chart} = option;
     <div className="jumbotron jumbotron-fluid">
   <div className="container">
     <h1 className="display-4" style={{"textAlign":"center"}}>Compare Google search trends</h1>
-   
+   <p style={{"textAlign":"center"}}>The most trending searches of your region are {dailyTrending ? <img style={{width:"10px",height:"10px"}} src = {loading} />:<b>{key1}</b>} and {dailyTrending ? <img style={{width:"10px",height:"10px"}} src = {loading} />:<b>{key2}</b>} </p>
   </div>
 </div>
     <div style={{"textAlign":"center"}}>
@@ -83,6 +95,7 @@ const {chart} = option;
 
 result.length ==1  && result[0] && result[0].length ? <h1>No comparisons found</h1>:
 <div>
+
 {chart=='Line Chart' ? <Chart
 chartType="LineChart"
 width="100%"
@@ -110,13 +123,20 @@ legendToggle
 App.propTypes = {
 trendData:PropTypes.func.isRequired,
 sending:PropTypes.bool.isRequired,
-result:PropTypes.array.isRequired
+dailyTrending:PropTypes.bool.isRequired,
+result:PropTypes.array.isRequired,
+getTrending:PropTypes.func.isRequired,
+key1:PropTypes.string.isRequired,
+key2:PropTypes.string.isRequired
 }
 
 const mapStateToProps = (state) => ({
  sending:state.trend.sending,
- result:state.trend.result
+ dailyTrending:state.trend.dailyTrending,
+ result:state.trend.result,
+ key1:state.trend.key1,
+ key2:state.trend.key2
  });
 export default connect(mapStateToProps, {
- trendData
+ trendData, getTrending
 })(App);
