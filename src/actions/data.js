@@ -1,7 +1,7 @@
 import axios from 'axios'
 import * as RNLocalize from "react-native-localize";
- const domain = "http://localhost:3001"
-//const domain = "https:apigoogletrends.herokuapp.com"
+// const domain = "http://localhost:3001"
+const domain = "https:apigoogletrends.herokuapp.com"
  export const trendData = (trend1,trend2) => async (dispatch) => {
     try {
     dispatch({
