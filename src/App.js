@@ -77,7 +77,7 @@ const {chart} = option;
 </div>
 <div className ="row">
 <div className="col-md-2 col-sm-12" style={{textAlign:'center'}}>
-{dailyTrending? null: <div><h6>Trending Searches</h6><i class="fa fa-arrow-down" aria-hidden="true"></i>{keyArr.map((x)=> 
+{dailyTrending? <img src={loading} style={{width:"200px",height:"200px"}}/>: <div><h6>Trending Searches</h6><i class="fa fa-arrow-down" aria-hidden="true"></i>{keyArr.map((x)=> 
   <div> {x}</div>
 )}</div>}
 </div>
