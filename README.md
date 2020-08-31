@@ -30,6 +30,7 @@ Step 2. Install all the dependencies
 Step 3. Run the application ```npm run dev```
 
 This is how the application will look like
+<br/>
 <img src="https://i.ibb.co/dgKDShY/Capture.png"/>
 
 
