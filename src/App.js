@@ -103,8 +103,8 @@ const {chart} = option;
 
 result.length ==1  && result[0] && result[0].length ? <h1>No comparisons found</h1>:
 <div>
-
-{chart=='Line Chart' ? <Chart
+{data.length>1 ?
+chart=='Line Chart' ? <Chart
 chartType="LineChart"
 width="100%"
 height="400px"
@@ -117,7 +117,7 @@ height="100%"
 data={data}
 options={options}
 legendToggle
-/>}
+/>:null}
 
 
       </div>}
