@@ -12,7 +12,7 @@ Before starting make sure you have the following installed on your system:
 ## Common Setup
 ### Backend
 Step 1. Clone this repository
-``` git clone https://github.com/learningdollars/lakshay-youtube-title-updater.git ```
+``` git clone https://github.com/learningdollars/lakshayg-google-trends-graphs.git ```
 
 Step 2. ``` cd lakshayg-google-trends-graphs/apibackend/  ```
 
